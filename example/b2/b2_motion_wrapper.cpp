@@ -31,19 +31,11 @@ bool B2MotionWrapper::initialize()
         
         // 初始化运动客户端
         sport_client_->SetTimeout(10.0f);
-        int32_t sport_result = sport_client_->Init();
-        if (sport_result != 0) {
-            last_result_ = "SportClient初始化失败，错误代码: " + std::to_string(sport_result);
-            return false;
-        }
+        sport_client_->Init();
         
         // 初始化运动切换客户端
         motion_switcher_->SetTimeout(10.0f);
-        int32_t switcher_result = motion_switcher_->Init();
-        if (switcher_result != 0) {
-            last_result_ = "MotionSwitcherClient初始化失败，错误代码: " + std::to_string(switcher_result);
-            return false;
-        }
+        motion_switcher_->Init();
         
         is_initialized_ = true;
         last_result_ = "初始化成功";
